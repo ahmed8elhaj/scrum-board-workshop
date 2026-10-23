@@ -13,8 +13,22 @@ let storyIdCounter = 1;
  * - Appeler updateCollaboratorsList() pour afficher la liste
  * - Appeler updateAssigneeSelect() pour mettre à jour le select d'assignation
  */
+const collaboratorName = document.getElementById('collaboratorName');
+const ajouterButton = document.querySelector('.input-group button');
+const collaboratorsListn = document.getElementById('collaboratorsList');
 function addCollaborator() {
-    // À IMPLÉMENTER
+    const listOfName = document.createElement('li');
+    const nomAjouter = collaboratorName.value.trim();
+    if( nomAjouter == '' || collaborators.includes(nomAjouter)){
+        return
+    }else{
+        listOfName.textContent=nomAjouter;
+        collaboratorsListn.appendChild(listOfName);
+        collaborators.push(nomAjouter)
+        console.log(collaborators);
+        collaboratorName.value='';
+    }
+
 }
 
 /**
