@@ -14,19 +14,20 @@ let storyIdCounter = 1;
  * - Appeler updateAssigneeSelect() pour mettre à jour le select d'assignation
  */
 const collaboratorName = document.getElementById('collaboratorName');
-const ajouterButton = document.querySelector('.input-group button');
 const collaboratorsListn = document.getElementById('collaboratorsList');
+
+
 function addCollaborator() {
-    const listOfName = document.createElement('li');
+
     const nomAjouter = collaboratorName.value.trim();
-    if( nomAjouter == '' || collaborators.includes(nomAjouter)){
+    if (nomAjouter == '' || collaborators.includes(nomAjouter)) {
+        collaboratorName.value = '';
         return
-    }else{
-        listOfName.textContent=nomAjouter;
-        collaboratorsListn.appendChild(listOfName);
+    } else {
         collaborators.push(nomAjouter)
-        console.log(collaborators);
-        collaboratorName.value='';
+
+        collaboratorName.value = '';
+        updateCollaboratorsList();
     }
 
 }
@@ -40,7 +41,12 @@ function addCollaborator() {
  * - Injecter le HTML dans l'élément avec innerHTML
  */
 function updateCollaboratorsList() {
-    // À IMPLÉMENTER
+    const collaboratorsListn = document.getElementById('collaboratorsList');
+    collaboratorsListn.innerHTML = " ";
+    collaborators.forEach(function(item){
+        collaboratorsListn.innerHTML  += `
+        <div style="background: #667eea; color: white; padding: 8px 15px; border-radius: 20px; ">${item} </div>`
+    });
 }
 
 /**
@@ -52,6 +58,12 @@ function updateCollaboratorsList() {
  */
 function updateAssigneeSelect() {
     // À IMPLÉMENTER
+        const storyAssignee = document.getElementById('storyAssignee');
+    storyAssignee.innerHTML = " ";
+    collaborators.forEach(function(item){
+        storyAssignee.innerHTML  += `
+        <div style="background: #667eea; color: white; padding: 8px 15px; border-radius: 20px; ">${item} </div>`
+    });
 }
 
 /**
